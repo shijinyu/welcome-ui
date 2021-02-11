@@ -1,0 +1,37 @@
+{
+  "dependencies": {
+    "axios": "^0.21.1",
+    "base-64": "0.1.0",
+    "child_process": "1.0.2",
+    "cypress": "6.4.0",
+    "cypress-file-upload": "4.1.1",
+    "cypress-image-snapshot": "4.0.1",
+    "date-fns": "2.16.1",
+    "date-fns-timezone": "0.1.4",
+    "jmespath": "0.15.0",
+    "lodash": "4.17.20",
+    "lodash.isequalwith": "4.4.0",
+    "ls": "0.2.1",
+    "mocha": "7.2.0",
+    "mochawesome": "6.2.1",
+    "mochawesome-merge": "4.1.0",
+    "mochawesome-report-generator": "5.1.0",
+    "rmfr": "2.0.0",
+    "tar": "6.0.5",
+    "yargs": "15.4.1"
+  },
+  "scripts": {
+    "cypress:run": "node scripts/cypress_runner.js",
+    "cypress:test-critical": "node scripts/cypress_runner.js --spec './cypress/integration/critical/*.feature'",
+    "cypress:test-medium": "node scripts/cypress_runner.js --spec './cypress/integration/medium/*.feature'",
+    "cypress:test-low": "node scripts/cypress_runner.js --spec './cypress/integration/low/*.feature'"
+  },
+  "devDependencies": {
+    "cypress-cucumber-preprocessor": "4.0.1",
+    "cypress-terminal-report": "2.4.0"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": false,
+    "stepDefinitions": "cypress/step_definitions"
+  }
+}

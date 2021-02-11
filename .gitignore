@@ -16,3 +16,5 @@ lerna-debug.log
 packages/IconFont/fonts/*.svg
 packages/IconFont/fonts/*.ttf
 packages/IconFont/fonts/*.css
+artifacts
+temp

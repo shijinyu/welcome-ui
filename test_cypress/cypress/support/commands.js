@@ -1,0 +1,44 @@
+// ***********************************************
+// This example commands.js shows you how to
+// create various custom commands and overwrite
+// existing commands.
+//
+// For more comprehensive examples of custom
+// commands please read more here:
+// https://on.cypress.io/custom-commands
+// ***********************************************
+//
+//
+// -- This is a parent command --
+// Cypress.Commands.add("login", (email, password) => { ... })
+//
+//
+// -- This is a child command --
+// Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
+//
+//
+// -- This is a dual command --
+// Cypress.Commands.add("dismiss", { prevSubject: 'optional'}, (subject, options) => { ... })
+//
+//
+// -- This will overwrite an existing command --
+// Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+import { addMatchImageSnapshotCommand } from 'cypress-image-snapshot/command'
+
+addMatchImageSnapshotCommand({
+  customSnapshotsDir: 'cypress/temp/snapshot',
+  customDiffDir: `cypress/artifacts/snapshots`
+})
+
+Cypress.Commands.add('copySnapshotToCompareFolder', (fixtureFolder, theme) => {
+  const fixSnapShot = `${fixtureFolder}${theme}`.replace(new RegExp(' ', 'g'), '')
+  cy.wrap(fixSnapShot).as('fixSnapShot')
+  cy.fixture(`${fixtureFolder}/${fixSnapShot}.snap`).then(snapShot => {
+    cy.writeFile(
+      `cypress/temp/snapshot/critical/${fixtureFolder}.feature/${fixSnapShot}.snap.png`,
+      snapShot,
+      'base64'
+    )
+  })
+})
