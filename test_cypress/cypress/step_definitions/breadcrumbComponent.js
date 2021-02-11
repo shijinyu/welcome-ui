@@ -8,13 +8,12 @@ const BREADCRUMB = '[data-testid="visual-test-breadcrumb"]'
 
 //#region Cucumber steps
 
-Then('I compare with the expected snapshot', () => {
+Then('I compare with the expected breadcrumb snapshot', () => {
   cy.get('@expectedFixtureFolder').then(folder => {
     cy.get('@theme').then(theme => {
-      cy.copySnapshotToCompareFolder(folder, theme)
-      cy.get('@fixSnapShot').then(fixSnapShot => {
-        cy.get(BREADCRUMB).matchImageSnapshot(fixSnapShot)
-      })
+      const fixSnapShotName = `${folder}_${theme}Theme`.replace(new RegExp(' ', 'g'), '')
+      cy.copySnapshotToCompareFolder(folder, theme, fixSnapShotName)
+      cy.get(BREADCRUMB).matchImageSnapshot(fixSnapShotName)
     })
   })
 })

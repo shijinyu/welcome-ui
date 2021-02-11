@@ -13,6 +13,10 @@ When('I visit the {string} page', page => {
   switch (page) {
     case 'Breadcrumb':
       cy.visit('/components/breadcrumb')
+      break
+    case 'Button':
+      cy.visit('/components/button')
+      break
   }
 })
 

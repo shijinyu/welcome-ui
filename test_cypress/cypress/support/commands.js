@@ -31,14 +31,14 @@ addMatchImageSnapshotCommand({
   customDiffDir: `cypress/artifacts/snapshots`
 })
 
-Cypress.Commands.add('copySnapshotToCompareFolder', (fixtureFolder, theme) => {
-  const fixSnapShot = `${fixtureFolder}${theme}`.replace(new RegExp(' ', 'g'), '')
-  cy.wrap(fixSnapShot).as('fixSnapShot')
-  cy.fixture(`${fixtureFolder}/${fixSnapShot}.snap`).then(snapShot => {
-    cy.writeFile(
-      `cypress/temp/snapshot/critical/${fixtureFolder}.feature/${fixSnapShot}.snap.png`,
-      snapShot,
-      'base64'
-    )
-  })
+Cypress.Commands.add('copySnapshotToCompareFolder', (fixtureFolder, theme, fixSnapShotName) => {
+  if (Cypress.env('updateSnapshots') !== true) {
+    cy.fixture(`${fixtureFolder}/${fixSnapShotName}.snap`).then(snapShot => {
+      cy.writeFile(
+        `cypress/temp/snapshot/critical/${fixtureFolder}.feature/${fixSnapShotName}.snap.png`,
+        snapShot,
+        'base64'
+      )
+    })
+  }
 })

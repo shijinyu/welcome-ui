@@ -10,4 +10,8 @@ Given('an ui {string}', theme => {
   cy.wrap(theme).as('theme')
 })
 
+Given('a format button {string}', format => {
+  cy.wrap(format).as('formatButton')
+})
+
 //#endregion
