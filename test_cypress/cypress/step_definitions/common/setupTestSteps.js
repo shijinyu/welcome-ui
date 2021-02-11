@@ -6,7 +6,7 @@ Given('an expected snapshot folder: {string}', folderName => {
   cy.wrap(folderName).as('expectedFixtureFolder')
 })
 
-Given('an ui {string}', theme => {
+Given('an ui {string} theme', theme => {
   cy.wrap(theme).as('theme')
 })
 

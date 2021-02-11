@@ -20,7 +20,7 @@ When('I visit the {string} page', page => {
   }
 })
 
-When('I choose {string}', theme => {
+When('I choose {string} theme', theme => {
   cy.get(THEME_MENU).click()
   cy.get(THEME_LIST)
     .contains(theme)

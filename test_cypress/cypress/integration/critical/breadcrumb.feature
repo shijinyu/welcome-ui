@@ -3,9 +3,9 @@ Feature: Test BreadCrumb
 
   Scenario Outline: Test BreadCrumb with <theme> theme
     Given an expected snapshot folder: "breadcrumb"
-      And an ui <theme>
+      And an ui <theme> theme
      When I visit the "Breadcrumb" page
-      And I choose <theme>
+      And I choose <theme> theme
      Then I compare with the expected breadcrumb snapshot
 
     Examples:
