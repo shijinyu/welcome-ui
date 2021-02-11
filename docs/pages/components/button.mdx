@@ -23,13 +23,13 @@ Built with [Reakit](https://reakit.io/docs/button/) for a better accessibility ð
 ### Basics
 
 ```jsx row
-<Button>Primary</Button>
-<Button variant="secondary">Secondary</Button>
-<Button variant="tertiary">Tertiary</Button>
+<Button data-testid="visual-test-button-primary">Primary</Button>
+<Button variant="secondary" data-testid="visual-test-button-secondary">Secondary</Button>
+<Button variant="tertiary" data-testid="visual-test-button-tertiary">Tertiary</Button>
 <Box backgroundColor="nude.700" display="inline" px="sm" py="xxl">
-  <Button variant="tertiary-negative">Tertiary negative</Button>
+  <Button variant="tertiary-negative" data-testid="visual-test-button-tertiary-negative">Tertiary negative</Button>
 </Box>
-<Button variant="quaternary">Quaternary</Button>
+<Button variant="quaternary" data-testid="visual-test-button-quaternary">Quaternary</Button>
 ```
 
 ### States

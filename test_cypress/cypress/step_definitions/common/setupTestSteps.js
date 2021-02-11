@@ -14,4 +14,8 @@ Given('a format button {string}', format => {
   cy.wrap(format).as('formatButton')
 })
 
+Given('a basic color button {string}', basic => {
+  cy.wrap(basic).as('basicButton')
+})
+
 //#endregion

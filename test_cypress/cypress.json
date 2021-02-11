@@ -1,3 +1,6 @@
 {
-    "baseUrl": "http://localhost:3020"
+    "baseUrl": "http://localhost:3020",
+    "env": {
+      "TAGS": "not @ignore"
+    }
 }

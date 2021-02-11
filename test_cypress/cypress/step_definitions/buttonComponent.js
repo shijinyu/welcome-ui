@@ -17,4 +17,19 @@ Then('I compare with the expected format button snapshot', () => {
   })
 })
 
+Then('I compare with the expected basic button snapshot', () => {
+  cy.get('@expectedFixtureFolder').then(folder => {
+    cy.get('@theme').then(theme => {
+      cy.get('@basicButton').then(basic => {
+        const fixSnapShotName = `${folder}_${theme}Theme_${basic}Color`.replace(
+          new RegExp(' ', 'g'),
+          ''
+        )
+        cy.copySnapshotToCompareFolder(folder, theme, fixSnapShotName)
+        cy.get(`[data-testid="visual-test-button-${basic}"]`).matchImageSnapshot(fixSnapShotName)
+      })
+    })
+  })
+})
+
 //#endregion
