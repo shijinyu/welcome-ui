@@ -3,10 +3,10 @@ Feature: Test Button
 
   Scenario Outline: Test basics button with <theme> theme and <basic> basic color
     Given an expected snapshot folder: "button"
-      And an ui <theme>
+      And an ui <theme> theme
       And a basic color button <basic>
      When I visit the "Button" page
-      And I choose <theme>
+      And I choose <theme> theme
      Then I compare with the expected basic button snapshot
 
     Examples:
@@ -29,10 +29,10 @@ Feature: Test Button
 
   Scenario Outline: Test format button with <theme> theme and <format> format
     Given an expected snapshot folder: "button"
-      And an ui <theme>
+      And an ui <theme> theme
       And a format button <format>
      When I visit the "Button" page
-      And I choose <theme>
+      And I choose <theme> theme
      Then I compare with the expected format button snapshot
 
     Examples:
