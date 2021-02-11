@@ -1,7 +1,7 @@
 @critical
 Feature: Test Button
 
-  Scenario Outline: Test formats button with <theme> theme and <format> format
+  Scenario Outline: Test format button with <theme> theme and <format> format
     Given an expected snapshot folder: "button"
       And an ui <theme>
       And a format button <format>
