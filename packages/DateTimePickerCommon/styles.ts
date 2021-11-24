@@ -1,5 +1,5 @@
 import styled, { css } from '@xstyled/styled-components'
-import ReactDatePicker from 'react-datepicker'
+import ReactDatePicker, { ReactDatePickerProps } from 'react-datepicker'
 import { th } from '@xstyled/system'
 import { IconWrapper } from '@welcome-ui/field'
 import { StyledIcon } from '@welcome-ui/icon'
@@ -11,7 +11,7 @@ import { defaultFieldStyles } from '@welcome-ui/utils'
 
 import { Focused, Icon, IconPlacement, Size } from './CustomInput'
 
-export const StyledDatePicker = styled(ReactDatePicker)`
+export const StyledDatePicker = styled(ReactDatePicker)<ReactDatePickerProps>`
   ${defaultFieldStyles({})};
   ${componentSystem};
 `
