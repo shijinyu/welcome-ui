@@ -39,18 +39,18 @@ jobs:
 
       # dry run
       - name: "[DRY RUN] Webfont deploy"
-        if: ${{ github.event.inputs.mode == 'dry_run' }}
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'dry_run' }}
         run: ls -l packages/IconFont/fonts
       - name: "[DRY RUN] NPM Deploy"
-        if: ${{ github.event.inputs.mode == 'dry_run' }}
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'dry_run' }}
         run: yarn lerna version ${{ github.event.inputs.bump_type }} --conventional-commits --no-private --no-git-tag-version --no-push
 
       # production run, publishes to npm registry, aws and git.
       - name: Webfont deploy
-        if: ${{ github.event.inputs.mode == 'production' }}
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'production' }}
         run: yarn webfont:deploy
       - name: NPM Deploy
-        if: ${{ github.event.inputs.mode == 'production' }}
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'production' }}
         run: yarn lerna version ${{ github.event.inputs.bump_type }} --conventional-commits --no-private --no-git-tag-version --no-push
 
       # - name: whoami
