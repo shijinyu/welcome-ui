@@ -12,32 +12,51 @@ on:
         options: 
         - major
         - minor
-        - bugfix
+        - patch
         required: true
-      release_type:
+        default: patch
+      mode:
         type: choice
-        description: Release type
+        description: Mode 
         options: 
-        - stable
-        - alpha
         - dry_run
+        - production
         required: true
-        default: main
+        default: dry_run
 
 jobs:
-  build:
+  build_and_deploy:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
+      - name: Install
+        run: yarn
+      - name: Build
+        run: yarn webfont:build && yarn build:core && yarn build:packages && yarn build:types
 
-      - name: whoami
-        env: 
-          NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+      # dry run
+      - name: "[DRY RUN] Webfont deploy"
+        if: ${{ github.event.inputs.mode == 'dry_run' }}
+        run: ls -l packages/IconFont/fonts
+      - name: "[DRY RUN] NPM Deploy"
+        if: ${{ github.event.inputs.mode == 'dry_run' }}
+        run: yarn lerna version ${{ github.event.inputs.bump_type }} --conventional-commits --no-private --no-git-tag-version --no-push
 
-        run: |
-          echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" > ~/.npmrc
-          npm whoami
+      # production run, publishes to npm registry, aws and git.
+      - name: Webfont deploy
+        if: ${{ github.event.inputs.mode == 'production' }}
+        run: yarn webfont:deploy
+      - name: NPM Deploy
+        if: ${{ github.event.inputs.mode == 'production' }}
+        run: yarn lerna version ${{ github.event.inputs.bump_type }} --conventional-commits --no-private --no-git-tag-version --no-push
+
+      # - name: whoami
+      #   env: 
+      #     NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
+      #   run: |
+      #     echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" > ~/.npmrc
+      #     npm whoami
