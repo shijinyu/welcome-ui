@@ -33,6 +33,7 @@ jobs:
         with:
           node-version: '14'
       - name: Install
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.mode == 'dry_run' }}
         run: yarn
       - name: Build
         run: yarn webfont:build && yarn build:core && yarn build:packages && yarn build:types
